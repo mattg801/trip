@@ -1,0 +1,81 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>By Date - Gollihur Family Eastern Adventure 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-blue-600 text-white p-4">
+        <h1 class="text-2xl font-bold text-center">By Date</h1>
+        <ul class="flex justify-around mt-4 flex-wrap">
+            <li><a href="index.html" class="hover:underline">Home</a></li>
+            <li><a href="by-date.html" class="hover:underline">By Date</a></li>
+            <li><a href="flights.html" class="hover:underline">Flights</a></li>
+            <li><a href="rental-cars.html" class="hover:underline">Rental Cars</a></li>
+            <li><a href="lodging.html" class="hover:underline">Lodging</a></li>
+            <li><a href="activities.html" class="hover:underline">Activities</a></li>
+            <li><a href="dining.html" class="hover:underline">Dining</a></li>
+        </ul>
+    </nav>
+    <div class="container mx-auto p-4 max-w-4xl">
+        <h2 class="text-xl font-semibold mb-4">Daily Itinerary</h2>
+        <p class="mb-4">Click a date to view all details for that day, including travel, lodging, activities, and dining.</p>
+        <ul class="list-disc ml-6 mb-4">
+            <li><a href="day-2025-06-10.html" class="text-blue-600 hover:underline">June 10, 2025 (Boston, MA)</a></li>
+            <li><a href="day-2025-06-11.html" class="text-blue-600 hover:underline">June 11, 2025 (Boston, MA)</a></li>
+            <li><a href="day-2025-06-12.html" class="text-blue-600 hover:underline">June 12, 2025 (Stowe, VT)</a></li>
+            <li><a href="day-2025-06-13.html" class="text-blue-600 hover:underline">June 13, 2025 (Susquehanna, PA)</a></li>
+            <li><a href="day-2025-06-14.html" class="text-blue-600 hover:underline">June 14, 2025 (Susquehanna, PA to Palmyra, NY)</a></li>
+            <li><a href="day-2025-06-15.html" class="text-blue-600 hover:underline">June 15, 2025 (Palmyra, NY)</a></li>
+            <li><a href="day-2025-06-16.html" class="text-blue-600 hover:underline">June 16, 2025 (Palmyra, NY to Kirtland, OH)</a></li>
+            <li><a href="day-2025-06-17.html" class="text-blue-600 hover:underline">June 17, 2025 (Kirtland, OH)</a></li>
+            <li><a href="day-2025-06-18.html" class="text-blue-600 hover:underline">June 18, 2025 (Kirtland, OH)</a></li>
+            <li><a href="day-2025-06-19.html" class="text-blue-600 hover:underline">June 19, 2025 (Kirtland, OH to Asheville, NC)</a></li>
+            <li><a href="day-2025-06-20.html" class="text-blue-600 hover:underline">June 20, 2025 (Asheville, NC)</a></li>
+            <li><a href="day-2025-06-21.html" class="text-blue-600 hover:underline">June 21, 2025 (Asheville, NC)</a></li>
+            <li><a href="day-2025-06-22.html" class="text-blue-600 hover:underline">June 22, 2025 (Asheville, NC to SLC)</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dining - Gollihur Family Eastern Adventure 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-blue-600 text-white p-4">
+        <h1 class="text-2xl font-bold text-center">Dining</h1>
+        <ul class="flex justify-around mt-4">
+            <li><a href="index.html" class="hover:underline">Home</a></li>
+            <li><a href="flights.html" class="hover:underline">Flights</a></li>
+            <li><a href="rental-cars.html" class="hover:underline">Rental Cars</a></li>
+            <li><a href="lodging.html" class="hover:underline">Lodging</a></li>
+            <li><a href="activities.html" class="hover:underline">Activities</a></li>
+            <li><a href="dining.html" class="hover:underline">Dining</a></li>
+        </ul>
+    </nav>
+    <div class="container mx-auto p-4 max-w-4xl">
+        <h2 class="text-xl font-semibold mb-4">Dining Details</h2>
+        <div class="mb-6">
+            <h3 class="text-lg font-medium">June 10-12: Boston, MA</h3>
+            <ul class="list-disc ml-6 mb-2">
+                <li><strong>Lunch (June 11):</strong> Toasted Flats (closes 5 PM) or Santario’s Pizza, near airport, $$</li>
+                <li><strong>Lunch Alternative (June 11):</strong> Quincy Market/Faneuil Hall, fast casual, $$</li>
+                <li><strong>Dinner (June 11):</strong> Kelly’s Roast Beef, 10 min walk from hotel, large portions, fish and chips, $</li>
+                <li><strong>Beach Time:</strong> Revere Beach, across from hotel, free, seashells and crabs</li>
+            </ul>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-lg font-medium">June 12: Stowe, VT</h3>
+            <ul class="list-disc ml-6 mb-2">
+                <li><strong>Lunch/Dinner:</strong> Cold Hollow Cider Mill, 3600 Waterbury-Stowe Rd, Waterbury Center, VT, apple cider donuts, cafe, <a href="https://gostowe.com/listing/cold-hollow-cider-mill/" class="text-blue-600 hover:underline">Info</a></li>
+                <li><strong>Von Trapp Lodge Dining:</strong> <a href="https://www.vontrappresort.com/dining.htm" class="text-blue-600 hover:underline">Info</a></li>
+            </ul>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-lg font-medium">June 14-16: Palmyra, NY</h3>
+            <ul class="list-disc ml-6 mb-2">
+                <li><strong>Sauder’s Amish Store:</strong> 2146 River Rd, Seneca Falls, NY, huge ice cream cones, Amish food, jams, jellies</li>
+                <li><strong>Mark’s Pizzeria:</strong> 1963 Kingdom Plaza, Waterloo, NY (near Sauder’s), or in Victor/Geneva</li>
+                <li><strong>The Chill & Grill:</strong> Old Main St, Palmyra, NY, large ice cream cones, ask for 1/2 kiddie size for kids</li>
+            </ul>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-lg font-medium">June 16-19: Kirtland, OH</h3>
+            <ul class="list-disc ml-6 mb-2">
+                <li><strong>Lunch:</strong> Kirtland Creamery, $</li>
+                <li><strong>Chipotle:</strong> Erie, PA</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
