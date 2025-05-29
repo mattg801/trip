@@ -37,7 +37,8 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script><!DOCTYPE html>
+</script>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -47,44 +48,49 @@
 </head>
 <body class="bg-gray-100 font-sans">
     <nav class="bg-blue-600 text-white p-4">
-    <h1 class="text-2xl font-bold text-center">Flights</h1>
-    <div class="overflow-x-auto">
-        <ul class="flex mt-4 space-x-4 whitespace-nowrap">
-            <li><a href="index.html" class="hover:underline px-2 py-1 text-sm">Home</a></li>
-            <li><a href="by-date.html" class="hover:underline px-2 py-1 text-sm">By Date</a></li>
-            <li><a href="flights.html" class="hover:underline px-2 py-1 text-sm">Flights</a></li>
-            <li><a href="rental-cars.html" class="hover:underline px-2 py-1 text-sm">Rental Cars</a></li>
-            <li><a href="lodging.html" class="hover:underline px-2 py-1 text-sm">Lodging</a></li>
-            <li><a href="activities.html" class="hover:underline px-2 py-1 text-sm">Activities</a></li>
-            <li><a href="dining.html" class="hover:underline px-2 py-1 text-sm">Dining</a></li>
-            <li><a href="photos.html" class="hover:underline px-2 py-1 text-sm">Photos</a></li>
-        </ul>
-    </div>
-</nav>
+        <h1 class="text-2xl font-bold text-center">Flights</h1>
+        <div class="overflow-x-auto">
+            <ul class="flex mt-4 space-x-4 whitespace-nowrap">
+                <li><a href="index.html" class="hover:underline px-2 py-1 text-sm">Home</a></li>
+                <li><a href="by-date.html" class="hover:underline px-2 py-1 text-sm">By Date</a></li>
+                <li><a href="flights.html" class="hover:underline px-2 py-1 text-sm">Flights</a></li>
+                <li><a href="rental-cars.html" class="hover:underline px-2 py-1 text-sm">Rental Cars</a></li>
+                <li><a href="lodging.html" class="hover:underline px-2 py-1 text-sm">Lodging</a></li>
+                <li><a href="activities.html" class="hover:underline px-2 py-1 text-sm">Activities</a></li>
+                <li><a href="dining.html" class="hover:underline px-2 py-1 text-sm">Dining</a></li>
+                <li><a href="photos.html" class="hover:underline px-2 py-1 text-sm">Photos</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container mx-auto p-4 max-w-4xl">
-        <h2 class="text-xl font-semibold mb-4">Flight Details</h2>
-        <div class="mb-6">
-            <h3 class="text-lg font-medium">June 10: SLC to Boston, MA</h3>
+        <h2 class="text-xl font-semibold mb-4">Flight Information</h2>
+        <div class="mb-6 bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-medium mb-2">June 10, 2025: SLC to Boston, MA</h3>
             <p><strong>Total Cost:</strong> $245 (was $342, covered by prior flight credits)</p>
             <ul class="list-disc ml-6">
                 <li><strong>Delta #DL3172:</strong> SLC to Denver, 7:57 AM - 9:24 AM (1h 30m), $95/$101.48</li>
+                <p class="ml-6"><a href="https://www.delta.com/flightstatus/search?flightNumber=3172&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL3172/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
                 <li><strong>Delta #DL499:</strong> Denver to Boston, 11:25 AM - 5:35 PM (4h 10m), $150/$173.49</li>
+                <p class="ml-6"><a href="https://www.delta.com/flightstatus/search?flightNumber=499&date=20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL499/20250610" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
                 <li><strong>Alternative Option:</strong> SLC to Boston (non-stop), 5:15 PM - 11:58 PM, $269 basic/$319 main</li>
             </ul>
         </div>
-        <div class="mb-6">
-            <h3 class="text-lg font-medium">June 19: Cleveland, OH to Asheville, NC</h3>
+        <div class="mb-6 bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-medium mb-2">June 19, 2025: Cleveland, OH to Asheville, NC</h3>
             <p><strong>Total Cost:</strong> $87.94 OOP per person (full fare $153.18, includes both legs, after discounts)</p>
             <ul class="list-disc ml-6">
                 <li><strong>Delta #DL1500:</strong> Cleveland to Atlanta, 10:16 AM - 12:03 PM (1h 47m)</li>
+                <p class="ml-6"><a href="https://www.delta.com/flightstatus/search?flightNumber=1500&date=20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL1500/20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
                 <li><strong>Delta #DL1093:</strong> Atlanta to Asheville, 2:09 PM - 3:12 PM (1h 3m)</li>
+                <p class="ml-6"><a href="https://www.delta.com/flightstatus/search?flightNumber=1093&date=20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL1093/20250619" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
             </ul>
         </div>
-        <div class="mb-6">
-            <h3 class="text-lg font-medium">June 22: Asheville, NC to SLC</h3>
+        <div class="mb-6 bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-medium mb-2">June 22, 2025: Asheville, NC to SLC</h3>
             <p><strong>Total Cost:</strong> $219 (covered by Cassidy with Skymiles)</p>
             <ul class="list-disc ml-6">
                 <li><strong>Delta #DL2070:</strong> Charlotte to SLC, 5:30 PM - 8:01 PM (4h 31m, non-stop)</li>
+                <p class="ml-6"><a href="https://www.delta.com/flightstatus/search?flightNumber=2070&date=20250622" target="_blank" class="text-blue-600 hover:underline">Track Live (Delta)</a> | <a href="https://flightaware.com/live/flight/DAL2070/20250622" target="_blank" class="text-blue-600 hover:underline">Track Live (FlightAware)</a></p>
             </ul>
         </div>
     </div>
